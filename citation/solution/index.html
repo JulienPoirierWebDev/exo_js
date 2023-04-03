@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de citations</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 1rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin: 1rem;
+            cursor: pointer;
+        }
+
+        div {
+            margin: 1rem;
+        }
+
+        form {
+            display: none;
+        }
+
+        .hidden {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Générateur de citations</h1>
+
+    <div>
+        <p id="quote"></p>
+        <p id="movie"></p>
+        <p id="character"></p>
+        <p id="year"></p>
+    </div>
+
+    <div>
+        <button id="newCitation">Nouvelle citation</button>
+    </div>
+
+
+    <div>
+        <h2 onclick="hideForm()">Ajouter une citation</h2>
+
+        <form action="">
+            <label for="quote">Citation</label>
+            <input type="text" name="quote" id="quote">
+            <label for="movie">Film</label>
+            <input type="text" name="movie" id="movie">
+            <label for="character">Personnage</label>
+            <input type="text" name="character" id="character">
+            <label for="year">Année</label>
+            <input type="text" name="year" id="year">
+            <input type="submit" value="Ajouter">
+        </form>
+    </div>
+
+    <div>
+        <h2>Faire un reset des citations</h2>
+
+        <button onclick="handleReset()">Reset</button>
+    </div>
+
+
+    <script>
+
+
+        function getCitations() {
+        // get the quotes in local storage
+            let quotes = JSON.parse(localStorage.getItem('quotes')) || [];
+
+            // if local storage is empty, get the quotes from the array
+            if(quotes.length === 0) {
+                quotes = [  
+                {    
+                    "movie": "The Godfather",
+                    "quote": "I'm gonna make him an offer he can't refuse.",
+                    "character": "Don Vito Corleone",
+                    "year": 1972  
+                },  
+                {    
+                    "movie": "The Terminator",
+                    "quote": "I'll be back.",    
+                    "character": "The Terminator",    
+                    "year": 1984  },  
+                    
+                {    
+                    "movie": "Star Wars: Episode V - The Empire Strikes Back", 
+                    "quote": "Do. Or do not. There is no try.",  
+                    "character": "Yoda",
+                    "year": 1980  
+                },  
+                {    "movie": "The Princess Bride",
+                    "quote": "Hello. My name is Inigo Montoya. You killed my father. Prepare to die.",   
+                    "character": "Inigo Montoya", 
+                    "year": 1987
+                }
+            ]
+    
+
+            }
+
+            return quotes;
+
+        }
+
+        function getNewCitation(event) {
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            const quote = document.getElementById('quote');
+            const movie = document.getElementById('movie');
+            const character = document.getElementById('character');
+            const year = document.getElementById('year');
+            quote.innerHTML = randomQuote.quote;
+            movie.innerHTML = randomQuote.movie;
+            character.innerHTML = randomQuote.character;
+            year.innerHTML = randomQuote.year;
+        }
+
+        function addCitation(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const quote = formData.get('quote');
+            const movie = formData.get('movie');
+            const character = formData.get('character');
+            const year = formData.get('year');
+
+
+            const newCitation = {quote, movie, character, year};
+            quotes.push(newCitation);
+            localStorage.setItem('quotes', JSON.stringify(quotes));
+
+            event.target.reset();
+        }
+
+        function hideForm() {
+            console.log('hide');
+            const form = document.querySelector('form');
+            form.classList.toggle('hidden');
+        }
+
+        function handleReset() {
+            localStorage.clear();
+            quotes = getCitations();
+        }
+
+        let quotes = getCitations();
+
+
+        const newCitation = document.getElementById('newCitation');
+        newCitation.addEventListener('click', getNewCitation);
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', addCitation);
+    </script>
+</body>
+</html>
