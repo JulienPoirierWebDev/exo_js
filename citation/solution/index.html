@@ -46,7 +46,7 @@
     </div>
 
     <div>
-        <button id="newCitation">Nouvelle citation</button>
+        <button id="newCitation">Changer la citation</button>
     </div>
 
 
@@ -115,7 +115,7 @@
 
         }
 
-        function getNewCitation(event) {
+        function handleCitationChange(event) {
             const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
             const quote = document.getElementById('quote');
             const movie = document.getElementById('movie');
@@ -159,7 +159,7 @@
 
 
         const newCitation = document.getElementById('newCitation');
-        newCitation.addEventListener('click', getNewCitation);
+        newCitation.addEventListener('click', handleCitationChange);
 
         const form = document.querySelector('form');
         form.addEventListener('submit', addCitation);
