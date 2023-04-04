@@ -19,13 +19,13 @@ Dans le <head>, ajoutez un lien vers un fichier CSS pour styliser votre applicat
 Dans le <body>, ajoutez les éléments suivants :
 
 Un champ de recherche de type <input>
-Un bouton "Rechercher" de type <button>
+Un bouton "Rechercher" de type <input>
 Un conteneur pour afficher les résultats de la recherche (par exemple, une <div>)
 
 ## Etape 3
 Créez un fichier JavaScript pour gérer la logique de l'application.
 
-Ajoutez un écouteur d'événements au bouton "Rechercher" pour déclencher une fonction lorsque l'utilisateur clique sur le bouton.
+Déclencher une fonction lorsque l'utilisateur clique sur le bouton "Rechercher".
 
 Dans la fonction déclenchée, utilisez AJAX pour envoyer une requête GET à l'API TMDb en utilisant l'URL suivante :
 
