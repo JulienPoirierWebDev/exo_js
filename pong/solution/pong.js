@@ -162,6 +162,7 @@ function resetBallPosition() {
     ball.y = canvas.height / 2;
     ball.hitCount = 0;
     ball.velocityX = 3 * (Math.random() * 2 - 1);
+    ball.velocityY = 3 * (Math.random() * 2 - 1);
 }
   
 function gameLoop() {
