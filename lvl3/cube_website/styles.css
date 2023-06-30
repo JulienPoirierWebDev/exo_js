@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  perspective: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg) rotateY(0deg);
+  transition: transform 2s;
+}
+
+.cube div {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.front {
+  transform: rotateY(0deg) translateZ(200px);
+  background-color: blue;
+}
+.right {
+  transform: rotateY(90deg) translateZ(200px);
+  background-color: red;
+}
+.back {
+  transform: rotateY(180deg) translateZ(200px);
+  background-color: green;
+}
+.left {
+  transform: rotateY(-90deg) translateZ(200px);
+  background-color: yellow;
+}
+.top {
+  transform: rotateX(90deg) translateZ(200px);
+  background-color: purple;
+}
+.bottom {
+  transform: rotateX(-90deg) translateZ(200px);
+  background-color: orange;
+}
+
+.controls__move {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+button {
+  background-color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  outline: none;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
